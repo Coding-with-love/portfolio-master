@@ -36,6 +36,7 @@
     "stylelint-config-standard": "^26.0.0"
   },
   "dependencies": {
+    "build": "^0.1.4",
     "framer-motion": "^7.1.0",
     "mdx-bundler": "^9.0.1",
     "next": "^12.2.5",
@@ -48,13 +49,13 @@
     "three-stdlib": "^2.18.1"
   },
   "scripts": {
-    "dev": "npm dev",
-    "build": "npm build && npm export -o build/",
+    "dev": "next dev",
+    "build": "next build && next export -o build/",
     "build:storybook": "build-storybook -o build-storybook && node scripts/draco-storybook",
     "deploy": "aws s3 sync --delete build/ s3://hamish-portfolio-site",
     "deploy:storybook": "aws s3 sync --delete build-storybook s3://hamish-portfolio-storybook",
-    "deploy:functions": "cd functions && npm run deploy",
-    "start": "npm start",
+    "deploy:functions": "cd functions && next run deploy",
+    "start": "next start",
     "test": "echo 'write some tests'",
     "storybook": "start-storybook -p 9009 -h localhost"
   },
