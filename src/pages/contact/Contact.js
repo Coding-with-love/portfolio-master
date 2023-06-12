@@ -51,7 +51,7 @@ export const Contact = () => {
     try {
       setSending(true);
       setSubmitted(true);
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/message`, {
+      const response = await fetch(`https://your-api-url.com/message`, {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -66,6 +66,7 @@ export const Contact = () => {
           message: message.value,
         }),
       });
+
 
       const responseMessage = await response.json();
 

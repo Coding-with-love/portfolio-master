@@ -26,7 +26,7 @@ const App = ({ Component, pageProps }) => {
   const canonicalRoute = route === '/' ? '' : `${asPath}`;
   useFoucFix();
 
- 
+
 
   useEffect(() => {
     dispatch({ type: 'setTheme', value: storedTheme || 'dark' });
@@ -40,8 +40,9 @@ const App = ({ Component, pageProps }) => {
             <Head>
               <link
                 rel="canonical"
-                href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}${canonicalRoute}`}
+                href={`https://connorlove.com${canonicalRoute}`}
               />
+
             </Head>
             <VisuallyHidden
               showOnFocus

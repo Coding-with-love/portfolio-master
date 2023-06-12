@@ -20,12 +20,12 @@ export const navLinks = [
 export const socialLinks = [
   {
     label: 'Twitter',
-    url: 'https://twitter.com/hamishMW',
+    url: 'https://twitter.com/cando145',
     icon: 'twitter',
   },
   {
     label: 'Github',
-    url: 'https://github.com/HamishMW',
+    url: 'https://github.com/Coding-with-love',
     icon: 'github',
   },
 ];
