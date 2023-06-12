@@ -20,7 +20,6 @@ export const Home = () => {
   const intro = useRef();
   const projectOne = useRef();
   const projectTwo = useRef();
-  const projectThree = useRef();
   const details = useRef();
 
   useEffect(() => {
@@ -111,8 +110,8 @@ export const Home = () => {
           ],
         }}
       />
-      
-    
+
+
       <Profile
         sectionRef={details}
         visible={visibleSections.includes(details.current)}

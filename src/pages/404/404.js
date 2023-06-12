@@ -1,5 +1,3 @@
-import notFoundPoster from 'assets/notfound.jpg';
-import notFoundVideo from 'assets/notfound.mp4';
 import { Button } from 'components/Button';
 import { DecoderText } from 'components/DecoderText';
 import { Heading } from 'components/Heading';
@@ -55,7 +53,7 @@ export function Page404() {
               </div>
             </div>
 
-           
+
           </Fragment>
         )}
       </Transition>

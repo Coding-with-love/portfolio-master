@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { bundleMDX } = require('mdx-bundler');
-
+const route = '/your-route';
 function addPage(page) {
   const path = page
     .replace('src/pages', '')

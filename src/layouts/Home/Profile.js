@@ -7,7 +7,6 @@ import { DecoderText } from 'components/DecoderText';
 import { Divider } from 'components/Divider';
 import { Heading } from 'components/Heading';
 import { Image } from 'components/Image';
-import { Link } from 'components/Link';
 import { Section } from 'components/Section';
 import { Text } from 'components/Text';
 import { Transition } from 'components/Transition';
@@ -21,8 +20,9 @@ const ProfileText = ({ visible, titleId }) => (
       <DecoderText text="hello world! " start={visible} delay={500} />
     </Heading>
     <Text className={styles.description} data-visible={visible} size="l" as="p">
-      I'm Connor Love, a passionate young web and graphic designer based in Medina, Ohio. As a senior in high school, I've spent the last five years immersing myself in the realm of coding and the last three years honing my skills in graphic design. My love for technology and creativity has allowed me to cultivate an array of skills that enables me to weave together intricate, functional, and aesthetically pleasing websites, applications, and visual content.
+      I&apos;m Connor Love, a passionate young web and graphic designer based in Medina, Ohio. As a senior in high school, I&apos;ve spent the last five years immersing myself in the realm of coding and the last three years honing my skills in graphic design. My love for technology and creativity has allowed me to cultivate an array of skills that enables me to weave together intricate, functional, and aesthetically pleasing websites, applications, and visual content.
     </Text>
+
     <Text className={styles.description} data-visible={visible} size="l" as="p">
       With a comprehensive grasp of languages including HTML, CSS, Reactjs, Nextjs, Three.js, Java, PHP, SQL, SWIFT, Typescript, and a touch of Python, I am adept at creating robust and interactive online experiences. Moreover, my proficiency with Adobe Suite tools such as Photoshop, Illustrator, and After Effects elevates my designs, making them distinct, dynamic, and engaging. As a dedicated student of design and technology, I continue to learn and adapt, ensuring that my work is always fresh, innovative, and on the cutting edge. I look forward to sharing my portfolio with you, demonstrating the breadth and depth of my expertise.
     </Text>

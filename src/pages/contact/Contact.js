@@ -14,9 +14,6 @@ import { useFormInput } from 'hooks';
 import { useRef, useState } from 'react';
 import { cssProps, msToNum, numToMs } from 'utils/style';
 import styles from './Contact.module.css';
-import style from './select.module.css';
-import Select from 'react-select';
-import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 export const Contact = () => {
   const errorRef = useRef();
@@ -33,15 +30,10 @@ export const Contact = () => {
   const [complete, setComplete] = useState(false);
   const [statusError, setStatusError] = useState('');
   const initDelay = tokens.base.durationS;
-  const [showOtherInput, setShowOtherInput] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [value, setValue] = useState({ min: 100, max: 10000 });
   const [inquiryType, setInquiryType] = useState(null);
   const [submitted, setSubmitted] = useState(false);
 
-  const marginTop = {
-    marginTop: '2%',
-  };
+
   const onSubmit = async (event) => {
     event.preventDefault();
     setStatusError('');
@@ -86,21 +78,10 @@ export const Contact = () => {
     }
   };
 
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const options = [
-    { value: 'graphic-design', label: 'Graphic Design' },
-    { value: 'website', label: 'Website' },
-    { value: 'app', label: 'App' },
-    { value: 'other', label: 'Other' },
-  ];
-  const handleSelectChange = selectedOptions => {
-    setSelectedOptions(selectedOptions);
-  };
-  const select = {
-    value: selectedOptions,
-    onChange: handleSelectChange,
-    options,
-  };
+  const [selectedOptions] = useState([]);
+
+
+
   const handleClick = type => {
     setInquiryType(type);
   };

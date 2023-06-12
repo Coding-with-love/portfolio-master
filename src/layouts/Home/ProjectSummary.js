@@ -10,7 +10,7 @@ import { Transition } from 'components/Transition';
 import { useWindowSize } from 'hooks';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
-import { cssProps, media } from 'utils/style';
+import { media } from 'utils/style';
 import styles from './ProjectSummary.module.css';
 
 const Model = dynamic(() => import('components/Model').then(mod => mod.Model));
@@ -29,11 +29,9 @@ export const ProjectSummary = ({
   ...rest
 }) => {
   const [focused, setFocused] = useState(false);
-  const theme = useTheme();
   const { width } = useWindowSize();
   const titleId = `${id}-title`;
   const isMobile = width <= media.tablet;
-  const svgOpacity = theme.themeId === 'light' ? 0.7 : 1;
   const indexText = index < 10 ? `0${index}` : index;
   const phoneSizes = `(max-width: ${media.tablet}px) 30vw, 20vw`;
   const laptopSizes = `(max-width: ${media.tablet}px) 80vw, 40vw`;
@@ -77,7 +75,7 @@ export const ProjectSummary = ({
     <div className={styles.preview}>
       {model.type === 'laptop' && (
         <>
-        
+
           <div className={styles.model} data-device="laptop">
             <Model
               alt={model.alt}
@@ -99,7 +97,7 @@ export const ProjectSummary = ({
       )}
       {model.type === 'phone' && (
         <>
-          
+
           <div className={styles.model} data-device="phone">
             <Model
               alt={model.alt}
