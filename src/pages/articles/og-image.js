@@ -17,6 +17,7 @@ export async function generateOgImage(props) {
   const publicPath = `https://connorlove.com/og/${imageName}`;
 
 
+
   try {
     fs.statSync(imagePath);
     return publicPath;
