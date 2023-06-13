@@ -13,7 +13,7 @@ function addPage(page) {
   if (route.includes('[') || route.includes('404')) return;
 
   return `  <url>
-  <loc>${`https://connorlove.com${route}`}</loc>
+  <loc>${`${process.env.NEXT_PUBLIC_WEBSITE_URL}${route}`}</loc>
   <changefreq>monthly</changefreq>
 </url>`;
 
@@ -28,7 +28,7 @@ async function addPost(post) {
   const path = post.replace('src/posts', '/articles').replace('.mdx', '');
 
   return `  <url>
-  <loc>${`https://connorlove.com${route}`}</loc>
+  <loc>${`${process.env.NEXT_PUBLIC_WEBSITE_URL}${route}`}</loc>
   <changefreq>monthly</changefreq>
 </url>`;
 }

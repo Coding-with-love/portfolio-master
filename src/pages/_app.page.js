@@ -40,7 +40,7 @@ const App = ({ Component, pageProps }) => {
             <Head>
               <link
                 rel="canonical"
-                href={`https://connorlove.com${canonicalRoute}`}
+                href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}${canonicalRoute}`}
               />
 
             </Head>
