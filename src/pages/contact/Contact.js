@@ -43,7 +43,7 @@ export const Contact = () => {
     try {
       setSending(true);
       setSubmitted(true);
-      const response = await fetch(`https://your-api-url.com/message`, {
+      const response = await fetch(`https://ooyunzca50.execute-api.us-east-2.amazonaws.com/Prod`, {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -54,9 +54,14 @@ export const Contact = () => {
           email: email.value,
           role: role.value,
           org: org.value,
-          selectedOptions: JSON.stringify(selectedOptions), // add selectedOptions to the body
+          done: done.value,
+          more: more.value,
+          price: price.value,
+          launch: launch.value,
           message: message.value,
+          inquiryType: inquiryType
         }),
+
       });
 
 
