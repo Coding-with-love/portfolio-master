@@ -15,6 +15,7 @@ import { useRef, useState } from 'react';
 import { cssProps, msToNum, numToMs } from 'utils/style';
 import styles from './Contact.module.css';
 import 'react-input-range/lib/css/index.css';
+
 export const Contact = () => {
   const errorRef = useRef();
   const email = useFormInput('');
@@ -22,8 +23,8 @@ export const Contact = () => {
   const message = useFormInput('');
   const role = useFormInput('');
   const org = useFormInput('');
-  const more = useFormInput('');
   const done = useFormInput('');
+  const more = useFormInput('');
   const price = useFormInput('');
   const launch = useFormInput('');
   const [sending, setSending] = useState(false);
@@ -33,63 +34,55 @@ export const Contact = () => {
   const [inquiryType, setInquiryType] = useState(null);
   const [submitted, setSubmitted] = useState(false);
 
-
   const onSubmit = async (event) => {
     event.preventDefault();
     setStatusError('');
 
     if (sending || submitted) return;
 
-    try {
-      setSending(true);
-      setSubmitted(true);
-      const response = await fetch(`https://ooyunzca50.execute-api.us-east-2.amazonaws.com/Prod`, {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: name.value,
-          email: email.value,
-          role: role.value,
-          org: org.value,
-          done: done.value,
-          more: more.value,
-          price: price.value,
-          launch: launch.value,
-          message: message.value,
-          inquiryType: inquiryType
-        }),
+    setSending(true);
+    setSubmitted(true);
 
-      });
-
-
-      const responseMessage = await response.json();
-
-      const statusError = getStatusError({
-        status: response?.status,
-        errorMessage: responseMessage?.error,
-        fallback: 'There was a problem sending your message',
-      });
-
-      if (statusError) throw new Error(statusError);
-
-      setComplete(true);
-      setSending(false);
-    } catch (error) {
-      setSending(false);
-      setStatusError(error.message);
+    const data = {
+      name: name.value,
+      email: email.value,
+      message: message.value,
+      role: role.value,
+      org: org.value,
+      done: done.value,
+      more: more.value,
+      price: price.value,
+      launch: launch.value,
+      inquiryType: inquiryType
     }
+
+    const formBody = Object.keys(data).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])).join('&');
+
+    const response = await fetch(`sendmail.php`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+      },
+      body: formBody
+    });
+
+    // handle the response from the server
+    if (response.ok) {
+      const responseMessage = await response.text();
+      console.log(responseMessage);
+      setComplete(true);
+    } else {
+      setStatusError('There was a problem sending your message');
+    }
+
+    setSending(false);
   };
-
-  const [selectedOptions] = useState([]);
-
 
 
   const handleClick = type => {
     setInquiryType(type);
   };
+
   return (
     <Section className={styles.contact}>
       <Meta
@@ -115,7 +108,6 @@ export const Contact = () => {
                 start={status !== 'exited'}
                 delay={300}
               />
-
             </Heading>
             <Divider
               className={styles.divider}
@@ -147,221 +139,118 @@ export const Contact = () => {
               </Button>
             </div>
             {inquiryType === 'Business' && (
-              <><div>
-                <Input
-                  required={submitted}
-                  className={styles.input}
-                  data-status={status}
-                  style={{ marginTop: '2%', ...getDelay(tokens.base.durationXS, initDelay) }}
-                  autoComplete="name"
-                  label="Your Full Name"
-                  type="text"
-                  maxLength={50}
-                  {...name} />
-                <Input
-                  required={submitted}
+              <>
+                <FormFields
+                  fields={[
+                    { label: "Your Full Name", type: "text", maxLength: 50, autoComplete: "name", state: name },
+                    { label: "Your Email", type: "email", maxLength: 512, autoComplete: "email", state: email },
+                    { label: "Your Role", type: "text", maxLength: 50, autoComplete: "role", state: role },
+                    { label: "Your Organization", type: "text", maxLength: 50, autoComplete: "organization", state: org },
+                    { label: "What do you need done?", type: "text", maxLength: 50, autoComplete: "done", state: done },
+                    { label: "Tell us More", type: "text", maxLength: 2500, autoComplete: "more", state: more },
+                    { label: "Price Range in USD", type: "text", maxLength: 50, autoComplete: "price range", state: price },
+                    { label: "Target Launch", type: "date", autoComplete: "date", state: launch },
+                  ]}
                   className={styles.input}
                   data-status={status}
                   style={getDelay(tokens.base.durationXS, initDelay)}
-                  autoComplete="email"
-                  label="Your Email"
-                  type="email"
-                  maxLength={512}
-                  {...email} />
-                <Input
                   required={submitted}
-                  multiline
-                  className={styles.input}
+                />
+                <Button
+                  className={styles.button}
                   data-status={status}
-                  style={getDelay(tokens.base.durationS, initDelay)}
-                  autoComplete="role"
-                  label="Your Role"
-                  maxLength={50}
-                  {...role} />
-                <Input
-                  required={submitted}
-                  multiline
-                  className={styles.input}
-                  data-status={status}
-                  style={getDelay(tokens.base.durationS, initDelay)}
-                  autoComplete="organization"
-                  label="Your Organization"
-                  maxLength={50}
-                  {...org} />
-                <Input
-                  required={submitted}
-                  multiline
-                  className={styles.input}
-                  data-status={status}
-                  style={getDelay(tokens.base.durationS, initDelay)}
-                  autoComplete="Done"
-                  label="What do you need done?"
-                  maxLength={50}
-                  {...done} />
-                <Input
-                  required={submitted}
-                  multiline
-                  className={styles.input}
-                  data-status={status}
-                  style={getDelay(tokens.base.durationS, initDelay)}
-                  autoComplete="more"
-                  label="Tell us More"
-                  maxLength={2500}
-                  {...more} />
-                <Input
-                  required={submitted}
-                  multiline
-                  className={styles.input}
-                  data-status={status}
-                  style={getDelay(tokens.base.durationS, initDelay)}
-                  autoComplete="price range"
-                  label="Price Range in USD"
-                  maxLength={50}
-                  {...price} />
-                <Input
-                  required={submitted}
-                  className={styles.input}
-                  data-status={status}
-                  style={getDelay(tokens.base.durationS, initDelay)}
-                  autoComplete="date"
-                  label="Target Launch"
-                  type="date"
-                  {...launch} />
-              </div><Button
-                className={styles.button}
-                data-status={status}
-                data-sending={sending}
-                style={getDelay(tokens.base.durationM, initDelay)}
-                disabled={sending}
-                loading={sending}
-                loadingText="Sending..."
-                icon="send"
-                type="submit"
-              >
+                  data-sending={sending}
+                  style={getDelay(tokens.base.durationM, initDelay)}
+                  disabled={sending}
+                  loading={sending}
+                  loadingText="Sending..."
+                  icon="send"
+                  type="submit"
+                >
                   Send message
-                </Button></>
+                </Button>
+              </>
             )}
 
             {inquiryType === 'Personal' && (
-              <><div>
-                <Input
-
+              <>
+                <FormFields
+                  fields={[
+                    { label: "Your Email", type: "email", maxLength: 512, autoComplete: "email", state: email },
+                    { label: "Message", type: "text", maxLength: 4096, autoComplete: "off", state: message },
+                  ]}
                   className={styles.input}
                   data-status={status}
-                  style={{ marginTop: '2%', ...getDelay(tokens.base.durationXS, initDelay) }}
-                  autoComplete="email"
-                  label="Your Email"
-                  type="email"
-                  maxLength={512}
+                  style={getDelay(tokens.base.durationXS, initDelay)}
                   required={submitted}
-                  {...email} />
-                <Input
-
-                  multiline
-                  className={styles.input}
+                />
+                <Button
+                  className={styles.button}
                   data-status={status}
-                  style={getDelay(tokens.base.durationS, initDelay)}
-                  autoComplete="off"
-                  label="Message"
-                  maxLength={4096}
-                  required={submitted}
-                  {...message} />
-              </div><Button
-                className={styles.button}
-                data-status={status}
-                data-sending={sending}
-                style={getDelay(tokens.base.durationM, initDelay)}
-                disabled={sending}
-                loading={sending}
-                loadingText="Sending..."
-                icon="send"
-                type="submit"
-              >
-                  Send message
-                </Button></>
-            )}
-
-            <Transition in={statusError} timeout={msToNum(tokens.base.durationM)}>
-              {errorStatus => (
-                <div
-                  className={styles.formError}
-                  data-status={errorStatus}
-                  style={cssProps({
-                    height: errorStatus ? errorRef.current?.offsetHeight : 0,
-                  })}
+                  data-sending={sending}
+                  style={getDelay(tokens.base.durationM, initDelay)}
+                  disabled={sending}
+                  loading={sending}
+                  loadingText="Sending..."
+                  icon="send"
+                  type="submit"
                 >
-                  <div className={styles.formErrorContent} ref={errorRef}>
-                    <div className={styles.formErrorMessage}>
-                      <Icon className={styles.formErrorIcon} icon="error" />
-                      {statusError}
-                    </div>
-                  </div>
-                </div>
-              )}
-            </Transition>
-
+                  Send message
+                </Button>
+              </>
+            )}
+            {statusError && (
+              <Text
+                ref={errorRef}
+                className={styles.error}
+                color="error"
+                data-status={status}
+                style={getDelay(tokens.base.durationM, initDelay, 0.2)}
+              >
+                {statusError}
+              </Text>
+            )}
           </form>
         )}
       </Transition>
-      <Transition unmount in={complete}>
-        {(visible, status) => (
-          <div className={styles.complete} aria-live="polite">
-            <Heading
-              level={3}
-              as="h3"
-              className={styles.completeTitle}
-              data-status={status}
-            >
-              Message Sent
-            </Heading>
-            <Text
-              size="l"
-              as="p"
-              className={styles.completeText}
-              data-status={status}
-              style={getDelay(tokens.base.durationXS)}
-            >
-              I’ll get back to you within a couple days, sit tight
-            </Text>
-            <Button
-              secondary
-              iconHoverShift
-              className={styles.completeButton}
-              data-status={status}
-              style={getDelay(tokens.base.durationM)}
-              href="/"
-              icon="chevronRight"
-            >
-              Back to homepage
-            </Button>
-          </div>
-        )}
-      </Transition>
-      <Footer className={styles.footer} />
-    </Section >
+      <Footer />
+    </Section>
   );
 };
 
-function getStatusError({
-  status,
-  errorMessage,
-  fallback = 'There was a problem with your request',
-}) {
-  if (status === 200) return false;
+const FormFields = ({ fields, className, dataStatus, style, required }) => {
+  return fields.map(({ label, type, maxLength, autoComplete, state }, index) => (
+    <Input
+      key={label}
+      label={label}
+      type={type}
+      maxLength={maxLength}
+      autoComplete={autoComplete}
+      required={required}
+      value={state.value}
+      onChange={state.onChange}
+      className={className}
+      data-status={dataStatus}
+      style={{ ...style, ...getDelay(tokens.base.durationXS, tokens.base.durationXS, index * 0.1) }}
+    />
+  ));
+};
 
-  const statuses = {
-    500: 'There was a problem with the server, try again later',
-    404: 'There was a problem connecting to the server. Make sure you are connected to the internet',
-  };
 
-  if (errorMessage) {
-    return errorMessage;
+const getDelay = (duration, initDelay, offset = 0) => {
+  const calcOffset = offset ? msToNum(duration) * offset : 0;
+  const totalDelay = numToMs(msToNum(initDelay) + calcOffset);
+  return cssProps({ '--transition-delay': totalDelay });
+};
+
+const getStatusError = ({ status, errorMessage, fallback }) => {
+  switch (status) {
+    case 429:
+      return 'You have been rate limited. Try again later.';
+    case 400:
+      return errorMessage || fallback;
+    case 500:
+    default:
+      return fallback;
   }
-
-  return statuses[status] || fallback;
-}
-
-function getDelay(delayMs, offset = numToMs(0), multiplier = 1) {
-  const numDelay = msToNum(delayMs) * multiplier;
-  return cssProps({ delay: numToMs((msToNum(offset) + numDelay).toFixed(0)) });
-}
+};
