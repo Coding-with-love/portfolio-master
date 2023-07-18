@@ -14,11 +14,11 @@ const ses = new aws.SES({
   region: 'us-east-1',
 });
 
-const ORIGINS = ['https://hamishw.com', 'https://www.hamishw.com'];
+const ORIGINS = ['https://connorlove.com', 'https://www.connorlovecom'];
 const MAX_EMAIL_LENGTH = 512;
-const MAX_MESSAGE_LENGTH = 4096;
-const EMAIL = 'hello@hamishw.com';
-const FROM_EMAIL = 'mailbot@hamishw.com';
+const MAX_MESSAGE_LENGTH = 16384;
+const EMAIL = 'LoveConnor2005@gmail.com';
+const FROM_EMAIL = 'mailbot@connorlove.com';
 const EMAIL_PATTERN = /(.+)@(.+){2,}\.(.+){2,}/;
 
 app.use(helmet());
@@ -40,10 +40,17 @@ app.options('*', cors());
 
 app.post('/message', async (req, res) => {
   try {
+    const name = DOMPurify.sanitize(req.body.name);
     const email = DOMPurify.sanitize(req.body.email);
     const message = DOMPurify.sanitize(req.body.message);
+    const role = DOMPurify.sanitize(req.body.role);
+    const org = DOMPurify.sanitize(req.body.org);
+    const more = DOMPurify.sanitize(req.body.more);
+    const done = DOMPurify.sanitize(req.body.done);
+    const price = DOMPurify.sanitize(req.body.price);
+    const launch = DOMPurify.sanitize(req.body.launch);
 
-    // Validate email request
+    // Validate request
     if (!email || !EMAIL_PATTERN.test(email)) {
       return res.status(400).json({ error: 'Please enter a valid email address' });
     }
@@ -64,6 +71,17 @@ app.post('/message', async (req, res) => {
       });
     }
 
+    const emailBody = `
+      From: ${name} <${email}>
+      Role: ${role}
+      Organization: ${org}
+      What do you need done?: ${done}
+      Tell us more: ${more}
+      Price range in USD: ${price}
+      Target Launch: ${launch}
+      Message: ${message}
+    `;
+
     // Send email using AWS SES
     await ses.sendEmail({
       Source: `Portfolio <${FROM_EMAIL}>`,
@@ -71,9 +89,9 @@ app.post('/message', async (req, res) => {
         ToAddresses: [EMAIL],
       },
       Message: {
-        Subject: { Data: `New message from ${email}` },
+        Subject: { Data: `New message from ${name} <${email}>` },
         Body: {
-          Text: { Data: `From: ${email}\n\n${message}` },
+          Text: { Data: emailBody },
         },
       },
     });
@@ -84,5 +102,6 @@ app.post('/message', async (req, res) => {
     return res.status(500).json({ error: 'Message rejected' });
   }
 });
+
 
 module.exports.handler = serverless(app);

@@ -1,6 +1,4 @@
-import gamestackTextureLarge from 'assets/gamestack-login-large.jpg';
 import gamestackTexturePlaceholder from 'assets/gamestack-login-placeholder.jpg';
-import gamestackTexture from 'assets/gamestack-login.jpg';
 import sprTextureLarge from 'assets/spr-lesson-builder-dark-large.jpg';
 import sprTexturePlaceholder from 'assets/spr-lesson-builder-dark-placeholder.jpg';
 import sprTexture from 'assets/spr-lesson-builder-dark.jpg';
@@ -11,6 +9,7 @@ import { Profile } from 'layouts/Home/Profile';
 import { ProjectSummary } from 'layouts/Home/ProjectSummary';
 import { useEffect, useRef, useState } from 'react';
 import styles from './Home.module.css';
+import wave from 'assets/logo2.png';
 
 const disciplines = ['Developer', 'Photoshopper', 'UI/UX Expert', 'SEO Optimizer', 'Brand-Builder'];
 
@@ -95,16 +94,16 @@ export const Home = () => {
         sectionRef={projectTwo}
         visible={visibleSections.includes(projectTwo.current)}
         index={2}
-        title="CodifyAI"
-        description="An AI Coding assistant that can create, debug, or optimize your code."
-        buttonText="View Website"
-        buttonLink="https://codifyai.org"
+        title="Wave Browser"
+        description="Wave Browser is an efficient, customizable, open-source browser with built in ad-blocking, sync capabilities, and a focus on user personalization."
+        buttonText="Coming Soon"
+        buttonLink=""
         model={{
           type: 'laptop',
           alt: 'App login screen',
           textures: [
             {
-              srcSet: [gamestackTexture, gamestackTextureLarge],
+              srcSet: [wave, wave],
               placeholder: gamestackTexturePlaceholder,
             }
           ],

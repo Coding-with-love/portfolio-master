@@ -18,8 +18,9 @@ const ProfileText = ({ visible, titleId }) => (
             <DecoderText text="My Graphic Design Journey " start={visible} delay={500} />
         </Heading>
         <Text className={styles.description} data-visible={visible} size="l" as="p">
-            Welcome to the showcase of my visual work, an expansive and diverse collection reflecting my skills in Adobe Photoshop and Illustrator. You'll discover a vibrant array of designs here, from complex creations crafted from scratch to transformative alterations of existing images, all of which demonstrate my ability to envision and manifest beauty in many forms.
+            Welcome to the showcase of my visual work, an expansive and diverse collection reflecting my skills in Adobe Photoshop and Illustrator. You&apos;ll discover a vibrant array of designs here, from complex creations crafted from scratch to transformative alterations of existing images, all of which demonstrate my ability to envision and manifest beauty in many forms.
         </Text>
+
     </Fragment>
 );
 
