@@ -15,7 +15,8 @@ import { useRef, useState } from 'react';
 import { cssProps, msToNum, numToMs } from 'utils/style';
 import styles from './Contact.module.css';
 import 'react-input-range/lib/css/index.css';
-
+import { setApiKey, send } from '@sendgrid/mail';
+setApiKey(process.env.SENDGRID_API_KEY);
 const ConfirmationPage = () => (
   <div>
     <h1>Your message has been sent successfully!</h1>
@@ -48,23 +49,32 @@ export const Contact = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Capture form data
-    const formData = new FormData(event.target);
+    // Prepare email data
+    let msgText = '';
+    if (inquiryType === 'Business') {
+      msgText = `Business inquiry from ${name.value} - Role: ${role.value}, Organization: ${org.value}, 
+                 Details: ${done.value} ${more.value}, Price Range: ${price.value}, 
+                 Target Launch: ${launch.value}`;
+    } else if (inquiryType === 'Personal') {
+      msgText = `Personal inquiry from ${email.value} - Message: ${message.value}`;
+    }
 
-    // Send form data to server
-    const response = await fetch(`https://www.connorlove.com/send/`, {
-      method: 'POST',
-      body: formData,
-    });
+    const msg = {
+      to: 'LoveConnor2005@gmail.com', // Your email
+      from: email.value, // The sender's email
+      subject: 'Contact Form Submission',
+      text: msgText,
+    };
 
-
-
-    if (response.ok) {
+    // Send email via SendGrid
+    try {
+      await send(msg);
       // If the request was successful, show the confirmation message
       setShowConfirmation(true);
+    } catch (error) {
+      console.error(error);
     }
   };
-
   return (
     <Section className={styles.contact}>
       {showConfirmation ? <ConfirmationPage /> : (
