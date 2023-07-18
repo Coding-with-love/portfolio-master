@@ -52,7 +52,7 @@ export const Contact = () => {
     const formData = new FormData(event.target);
 
     // Send form data to server
-    const response = await fetch('https://connorlove.com/send/', {
+    const response = await fetch('/send/', {
       method: 'POST',
       body: formData,
     });
