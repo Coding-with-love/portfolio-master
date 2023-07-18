@@ -49,32 +49,33 @@ export const Contact = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Prepare email data
-    let msgText = '';
-    if (inquiryType === 'Business') {
-      msgText = `Business inquiry from ${name.value} - Role: ${role.value}, Organization: ${org.value}, 
-                 Details: ${done.value} ${more.value}, Price Range: ${price.value}, 
-                 Target Launch: ${launch.value}`;
-    } else if (inquiryType === 'Personal') {
-      msgText = `Personal inquiry from ${email.value} - Message: ${message.value}`;
-    }
-
-    const msg = {
-      to: 'LoveConnor2005@gmail.com', // Your email
-      from: email.value, // The sender's email
-      subject: 'Contact Form Submission',
-      text: msgText,
+    const formData = {
+      email: email.value,
+      name: name.value,
+      message: message.value,
+      role: role.value,
+      org: org.value,
+      more: more.value,
+      done: done.value,
+      price: price.value,
+      launch: launch.value,
+      inquiryType: inquiryType,
     };
 
-    // Send email via SendGrid
-    try {
-      await send(msg);
-      // If the request was successful, show the confirmation message
+
+    const response = await fetch('/api/sendEmail', {
+      method: 'POST',
+      body: JSON.stringify(formData),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (response.ok) {
       setShowConfirmation(true);
-    } catch (error) {
-      console.error(error);
     }
   };
+
   return (
     <Section className={styles.contact}>
       {showConfirmation ? <ConfirmationPage /> : (
