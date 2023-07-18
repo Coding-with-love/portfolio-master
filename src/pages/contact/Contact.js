@@ -52,10 +52,12 @@ export const Contact = () => {
     const formData = new FormData(event.target);
 
     // Send form data to server
-    const response = await fetch('/send/', {
+    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/send/`, {
       method: 'POST',
       body: formData,
     });
+
+
 
     if (response.ok) {
       // If the request was successful, show the confirmation message
