@@ -52,7 +52,7 @@ export const Contact = () => {
     const formData = new FormData(event.target);
 
     // Send form data to server
-    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/send/`, {
+    const response = await fetch(`https://www.connorlove.com/send/`, {
       method: 'POST',
       body: formData,
     });
