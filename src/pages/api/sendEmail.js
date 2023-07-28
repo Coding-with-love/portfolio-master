@@ -1,46 +1,41 @@
-const sendgrid = require('@sendgrid/mail');
-sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
+const express = require('express');
+const nodemailer = require('nodemailer');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
-module.exports = async (req, res) => {
-  const { email, name, message, role, org, more, done, price, launch, inquiryType } = req.body;
+const app = express();
+app.use(cors());
+app.use(bodyParser.json());
 
-  let content;
+app.post('/send-email', async (req, res) => {
+  let { email, name, message, role, org, more, done, price, launch, inquiryType } = req.body;
 
-  if (inquiryType === 'Business') {
-    content = {
-      to: 'your-email@example.com',
-      from: 'your-email@example.com',
-      subject: `New Business Message From ${name} - ${email}`,
-      text: `Message: ${message}
-             Role: ${role}
-             Organization: ${org}
-             More Details: ${more}
-             What Needs to be Done: ${done}
-             Price Range: ${price}
-             Target Launch: ${launch}`,
-      html: `<p>${message}</p>
-             <p>${role}</p>
-             <p>${org}</p>
-             <p>${more}</p>
-             <p>${done}</p>
-             <p>${price}</p>
-             <p>${launch}</p>`
-    };
-  } else if (inquiryType === 'Personal') {
-    content = {
-      to: 'your-email@example.com',
-      from: 'your-email@example.com',
-      subject: `New Personal Message From ${name} - ${email}`,
-      text: `Message: ${message}`,
-      html: `<p>${message}</p>`
-    };
-  }
+  let mailTransporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'your-email@gmail.com',
+      pass: 'your-password',
+    }
+  });
 
-  try {
-    await sendgrid.send(content);
-    res.status(200).send('Message sent successfully.');
-  } catch (error) {
-    console.log('ERROR', error);
-    res.status(400).send('Message not sent.');
-  }
-};
+  let mailDetails = {
+    from: 'your-email@gmail.com',
+    to: 'recipient-email@gmail.com',
+    subject: 'Test mail',
+    text: 'Node.js testing mail for GeeksforGeeks',
+  };
+
+  mailTransporter.sendMail(mailDetails, function (err, data) {
+    if (err) {
+      console.log('Error Occurs', err);
+      res.status(500).send(err);
+    } else {
+      console.log('Email sent successfully');
+      res.status(200).send("Email sent successfully");
+    }
+  });
+});
+
+app.listen(3001, () => {
+  console.log('Listening on port 3001');
+});

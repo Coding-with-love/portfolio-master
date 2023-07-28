@@ -6,7 +6,7 @@ export const TextArea = ({
   className,
   resize = 'none',
   value,
-  onChange,
+  onChange = () => { }, // add a default function here
   minRows = 1,
   maxRows,
   ...rest

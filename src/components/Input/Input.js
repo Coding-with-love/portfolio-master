@@ -6,6 +6,12 @@ import { classes, cssProps, msToNum } from 'utils/style';
 import styles from './Input.module.css';
 import { TextArea } from './TextArea';
 
+function removeNumericalKeys(obj) {
+  return Object.fromEntries(
+    Object.entries(obj).filter(([key]) => isNaN(Number(key)))
+  );
+}
+
 export const Input = ({
   id,
   label,
@@ -22,6 +28,8 @@ export const Input = ({
   onChange,
   ...rest
 }) => {
+  const validRest = removeNumericalKeys(rest);
+
   const [focused, setFocused] = useState(false);
   const generatedId = useId();
   const errorRef = useRef();
@@ -43,7 +51,7 @@ export const Input = ({
       className={classes(styles.container, className)}
       data-error={!!error}
       style={style}
-      {...rest}
+      {...validRest}
     >
       <div className={styles.content}>
         <label

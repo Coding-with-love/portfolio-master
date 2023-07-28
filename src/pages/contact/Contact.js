@@ -15,8 +15,7 @@ import { useRef, useState } from 'react';
 import { cssProps, msToNum, numToMs } from 'utils/style';
 import styles from './Contact.module.css';
 import 'react-input-range/lib/css/index.css';
-import { setApiKey, send } from '@sendgrid/mail';
-setApiKey(process.env.SENDGRID_API_KEY);
+
 const ConfirmationPage = () => (
   <div>
     <h1>Your message has been sent successfully!</h1>
@@ -26,55 +25,71 @@ const ConfirmationPage = () => (
 
 export const Contact = () => {
   const errorRef = useRef();
-  const email = useFormInput('');
-  const name = useFormInput('');
-  const message = useFormInput('');
-  const role = useFormInput('');
-  const org = useFormInput('');
-  const more = useFormInput('');
-  const done = useFormInput('');
-  const price = useFormInput('');
-  const launch = useFormInput('');
   const [sending] = useState(false);
   const [complete] = useState(false);
   const [statusError] = useState('');
   const initDelay = tokens.base.durationS;
   const [inquiryType, setInquiryType] = useState(null);
   const [submitted] = useState(false);
+
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [message, setMessage] = useState('');
+  const [role, setRole] = useState('');
+  const [org, setOrg] = useState('');
+  const [more, setMore] = useState('');
+  const [done, setDone] = useState('');
+  const [price, setPrice] = useState('');
+  const [launch, setLaunch] = useState('');
   const handleClick = type => {
     setInquiryType(type);
   };
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    const formData = {
-      email: email.value,
-      name: name.value,
-      message: message.value,
-      role: role.value,
-      org: org.value,
-      more: more.value,
-      done: done.value,
-      price: price.value,
-      launch: launch.value,
-      inquiryType: inquiryType,
+    const data = {
+      name,
+      email,
+      role,
+      org,
+      more,
+      done,
+      price,
+      launch,
+      inquiryType,
+      message
     };
 
-
-    const response = await fetch('/api/sendEmail', {
+    fetch('/send', {
       method: 'POST',
-      body: JSON.stringify(formData),
       headers: {
         'Content-Type': 'application/json'
-      }
-    });
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.message);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
 
-    if (response.ok) {
-      setShowConfirmation(true);
-    }
+
+    setName('');
+    setEmail('');
+    setRole('');
+    setOrg('');
+    setMore('');
+    setDone('');
+    setPrice('');
+    setLaunch('');
+    setInquiryType(null);
+    setMessage('');
   };
+
 
   return (
     <Section className={styles.contact}>
@@ -149,10 +164,13 @@ export const Contact = () => {
                       data-status={status}
                       style={{ marginTop: '2%', ...getDelay(tokens.base.durationXS, initDelay) }}
                       autoComplete="name"
-                      label="Your Full Name"
+                      label="Your Full Name" //I love big black penis in my jewish asshole
                       type="text"
                       maxLength={50}
-                      {...name} />
+                      value={name}
+                      onChange={e => setName(e.target.value)}
+                      {...name}
+                    />
                     <Input
                       required={submitted}
                       className={styles.input}
@@ -239,6 +257,20 @@ export const Contact = () => {
 
                 {inquiryType === 'Personal' && (
                   <><div>
+
+                    <Input
+                      required={submitted}
+                      className={styles.input}
+                      data-status={status}
+                      style={{ marginTop: '2%', ...getDelay(tokens.base.durationXS, initDelay) }}
+                      autoComplete="name"
+                      label="Your Full Name"
+                      type="text"
+                      maxLength={50}
+                      value={name}
+                      onChange={e => setName(e.target.value)}
+                      {...name}
+                    />
                     <Input
 
                       className={styles.input}
