@@ -10,7 +10,6 @@ import { Section } from 'components/Section';
 import { Text } from 'components/Text';
 import { tokens } from 'components/ThemeProvider/theme';
 import { Transition } from 'components/Transition';
-import { useFormInput } from 'hooks';
 import { useRef, useState } from 'react';
 import { cssProps, msToNum, numToMs } from 'utils/style';
 import styles from './Contact.module.css';
@@ -19,7 +18,7 @@ import 'react-input-range/lib/css/index.css';
 const ConfirmationPage = () => (
   <div>
     <h1>Your message has been sent successfully!</h1>
-    <p>We will get back to you soon.</p>
+    <p>We will get back to you soon. </p>
   </div>
 );
 
@@ -49,34 +48,53 @@ export const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const data = {
-      name,
-      email,
-      role,
-      org,
-      more,
-      done,
-      price,
-      launch,
-      inquiryType,
-      message
-    };
+    let data;
+    if (inquiryType === 'Business') {
+      data = {
+        name,
+        email,
+        role,
+        org,
+        more,
+        done,
+        price,
+        launch,
+        inquiryType,
+        message
+      };
+    } else if (inquiryType === 'Personal') {
+      data = {
+        name,
+        email,
+        message,
+        inquiryType
+      };
+    }
 
-    fetch('/send', {
+    // Show the confirmation screen immediately
+    setShowConfirmation(true);
+
+    fetch('https://connorlove.com/send-email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
     })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then(data => {
         console.log(data.message);
       })
       .catch((error) => {
         console.error('Error:', error);
+        // If there's an error, hide the confirmation screen
+        setShowConfirmation(false);
       });
-
 
     setName('');
     setEmail('');
@@ -89,6 +107,7 @@ export const Contact = () => {
     setInquiryType(null);
     setMessage('');
   };
+
 
 
   return (
@@ -180,6 +199,8 @@ export const Contact = () => {
                       label="Your Email"
                       type="email"
                       maxLength={512}
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
                       {...email} />
                     <Input
                       required={submitted}
@@ -190,6 +211,8 @@ export const Contact = () => {
                       autoComplete="role"
                       label="Your Role"
                       maxLength={50}
+                      value={role}
+                      onChange={e => setRole(e.target.value)}
                       {...role} />
                     <Input
                       required={submitted}
@@ -200,6 +223,8 @@ export const Contact = () => {
                       autoComplete="organization"
                       label="Your Organization"
                       maxLength={50}
+                      value={org}
+                      onChange={e => setOrg(e.target.value)}
                       {...org} />
                     <Input
                       required={submitted}
@@ -210,6 +235,8 @@ export const Contact = () => {
                       autoComplete="Done"
                       label="What do you need done?"
                       maxLength={50}
+                      value={done}
+                      onChange={e => setDone(e.target.value)}
                       {...done} />
                     <Input
                       required={submitted}
@@ -220,6 +247,8 @@ export const Contact = () => {
                       autoComplete="more"
                       label="Tell us More"
                       maxLength={2500}
+                      value={more}
+                      onChange={e => setMore(e.target.value)}
                       {...more} />
                     <Input
                       required={submitted}
@@ -230,6 +259,8 @@ export const Contact = () => {
                       autoComplete="price range"
                       label="Price Range in USD"
                       maxLength={50}
+                      value={price}
+                      onChange={e => setPrice(e.target.value)}
                       {...price} />
                     <Input
                       required={submitted}
@@ -239,6 +270,8 @@ export const Contact = () => {
                       autoComplete="date"
                       label="Target Launch"
                       type="date"
+                      value={launch}
+                      onChange={e => setLaunch(e.target.value)}
                       {...launch} />
                   </div><Button
                     className={styles.button}
@@ -281,6 +314,8 @@ export const Contact = () => {
                       type="email"
                       maxLength={512}
                       required={submitted}
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
                       {...email} />
                     <Input
 
@@ -292,6 +327,8 @@ export const Contact = () => {
                       label="Message"
                       maxLength={4096}
                       required={submitted}
+                      value={message}
+                      onChange={e => setMessage(e.target.value)}
                       {...message} />
                   </div> <Button
                     className={styles.button}

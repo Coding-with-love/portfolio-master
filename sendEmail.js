@@ -2,50 +2,48 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-require('dotenv').config();
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.post('/send', async (req, res) => {
+// Added GET endpoint for testing
+app.get('/test', (req, res) => {
+    res.send("Server is running correctly");
+});
+
+app.post('/send-email', async (req, res) => {
     let { email, name, message, role, org, more, done, price, launch, inquiryType } = req.body;
 
-    if (!email || !name || !message || !inquiryType) {
-        return res.status(400).json({ error: "Email, Name, Message, and Inquiry Type are required fields." });
-    }
-
-    const transporter = nodemailer.createTransport({
-        host: 'smtp.ethereal.email',
-        port: 587,
+    let mailTransporter = nodemailer.createTransport({
+        service: 'hotmail',
         auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
+            user: 'loveconnor2005@outlook.com',
+            pass: 'Cando145!',
         }
     });
 
     let mailDetails = {
-        from: 'loveconnor2005@gmail.com',
+        from: 'loveconnor2005@outlook.com',
         to: 'loveconnor2005@gmail.com',
-        subject: `New ${inquiryType} Inquiry from ${name}`,
-        text: `Name: ${name}\nEmail: ${email}\nRole: ${role || 'N/A'}\nOrganization: ${org || 'N/A'}\nWhat to be done: ${done || 'N/A'}\nAdditional Details: ${more || 'N/A'}\nPrice Range: ${price || 'N/A'}\nTarget Launch: ${launch || 'N/A'}\nMessage: ${message || 'N/A'}`,
+        subject: `Inquiry from ${name}`,
+        text: `Email: ${email}\nName: ${name}\nMessage: ${message}\nInquiry Type: ${inquiryType}`,
     };
 
-    try {
-        let info = await transporter.sendMail(mailDetails);
-        console.log('Email sent: ' + info.response);
-        res.status(200).json({ message: 'Email sent successfully' });
-    } catch (error) {
-        console.error('Error in sending email: ', error);
-        res.status(500).json({ error: 'Error in sending email' });
+    if (inquiryType === 'Business') {
+        mailDetails.text += `\nRole: ${role}\nOrganization: ${org}\nMore: ${more}\nDone: ${done}\nPrice: ${price}\nLaunch: ${launch}`;
     }
 
+    mailTransporter.sendMail(mailDetails, function (err, data) {
+        if (err) {
+            console.log('Error Occurs', err);
+            res.status(500).json({ error: err });
+        } else {
+            console.log('Email sent successfully');
+            res.status(200).json({ message: "Email sent successfully" });
+        }
+    });
 });
-
-app.use(function (err, req, res, next) {
-    console.error(err.stack)
-    res.status(500).send('Something broke!')
-})
 
 app.listen(3001, () => {
     console.log('Listening on port 3001');
