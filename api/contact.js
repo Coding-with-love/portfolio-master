@@ -16,11 +16,11 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 // Added GET endpoint for testing
-app.get('/', (req, res) => {
+app.get('/api/contact.js', (req, res) => {
   res.send("Server is running correctly");
 });
 
-app.post('/', async (req, res) => {
+app.post('/api/contact.js', async (req, res) => {
   let { email, name, message, role, org, more, done, price, launch, inquiryType } = req.body;
 
   let mailTransporter = nodemailer.createTransport({

@@ -14,7 +14,6 @@ import { useRef, useState } from 'react';
 import { cssProps, msToNum, numToMs } from 'utils/style';
 import styles from './Contact.module.css';
 import 'react-input-range/lib/css/index.css';
-
 const ConfirmationPage = () => (
   <div>
     <h1>Your message has been sent successfully!</h1>
@@ -74,7 +73,7 @@ export const Contact = () => {
     // Show the confirmation screen immediately
     setShowConfirmation(true);
 
-    fetch('/api/', {
+    fetch('/api/contact.js', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
