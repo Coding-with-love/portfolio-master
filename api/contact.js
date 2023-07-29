@@ -4,7 +4,15 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
-app.use(cors());
+
+const corsOptions = {
+  origin: 'https://www.connorlove.com', // replace with your origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  optionsSuccessStatus: 200 // respond OK to OPTIONS request
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 // Added GET endpoint for testing
