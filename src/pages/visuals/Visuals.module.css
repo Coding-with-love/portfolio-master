@@ -119,9 +119,9 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
   -webkit-backface-visibility: hidden; /* for Safari */
   backface-visibility: hidden;
+  box-sizing: border-box;
 }
 
 .flipCardFront {
@@ -139,4 +139,3 @@
   -webkit-transform-style: preserve-3d;  /* for Safari */
   transform-style: preserve-3d;
 }
-
