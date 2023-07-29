@@ -178,7 +178,10 @@ const FlipCard = ({ image, alt, info }) => {
     };
 
     return (
-        <div className={styles.flipCard}>
+        <div
+            className={`${styles.flipCard} ${isFlipped ? styles.isFlipped : ''}`}
+            onClick={flipCard}
+        >
             <div className={styles.flipCardInner}>
                 <div className={styles.flipCardFront}>
                     <Image

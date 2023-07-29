@@ -111,7 +111,7 @@
   transform-style: preserve-3d;
 }
 
-.flipCard:hover .flipCardInner {
+.flipCard.isFlipped .flipCardInner {
   transform: rotateY(180deg);
 }
 
@@ -121,6 +121,8 @@
   height: 100%;
   backface-visibility: hidden;
   box-sizing: border-box;
+  background-color: #bbb;
+  color: black;
 }
 
 .flipCardBack {
@@ -129,14 +131,6 @@
   height: 100%;
   backface-visibility: hidden;
   box-sizing: border-box;
-}
-
-.flipCardFront {
-  background-color: #bbb;
-  color: black;
-}
-
-.flipCardBack {
   background-color: dodgerblue;
   color: white;
   transform: rotateY(180deg);
