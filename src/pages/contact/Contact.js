@@ -74,7 +74,7 @@ export const Contact = () => {
     // Show the confirmation screen immediately
     setShowConfirmation(true);
 
-    fetch('https://connorlove.com/api/', {
+    fetch('/api/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
