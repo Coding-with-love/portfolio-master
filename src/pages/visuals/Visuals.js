@@ -181,7 +181,7 @@ const FlipCard = ({ image, alt, info }) => {
         <div
             className={`${styles.flipCard} ${isFlipped ? styles.isFlipped : ""}`}
             onClick={flipCard}
-            onTouchEnd={flipCard}
+
         >
             <div className={styles.flipCardInner}>
                 <div className={styles.flipCardFront}>

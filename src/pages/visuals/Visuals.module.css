@@ -115,23 +115,28 @@
   transform: rotateY(180deg);
 }
 
-.flipCardFront{
+.flipCardFront, .flipCardBack {
   position: absolute;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden;
   box-sizing: border-box;
+  -webkit-backface-visibility: hidden; /* for Safari */
+  backface-visibility: hidden;
+}
+
+.flipCardFront {
   background-color: #bbb;
   color: black;
 }
 
 .flipCardBack {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  box-sizing: border-box;
   background-color: dodgerblue;
   color: white;
   transform: rotateY(180deg);
 }
+
+.flipCard, .flipCardInner {
+  -webkit-transform-style: preserve-3d;  /* for Safari */
+  transform-style: preserve-3d;
+}
+
