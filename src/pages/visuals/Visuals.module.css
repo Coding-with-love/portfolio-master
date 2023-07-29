@@ -92,3 +92,52 @@
   place-items: center; /* shorthand for align-items + justify-items */
   height: 100%; /* you might need a specific height */
 }
+
+.flipCard {
+  background-color: transparent;
+  width: 200px;
+  height: 200px;
+  perspective: 1000px; 
+  margin: 20%;
+  object-fit: cover;
+}
+
+.flipCardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform .8s;
+  transform-style: preserve-3d;
+}
+
+.flipCard:hover .flipCardInner {
+  transform: rotateY(180deg);
+}
+
+.flipCardFront{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  box-sizing: border-box;
+}
+
+.flipCardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  box-sizing: border-box;
+}
+
+.flipCardFront {
+  background-color: #bbb;
+  color: black;
+}
+
+.flipCardBack {
+  background-color: dodgerblue;
+  color: white;
+  transform: rotateY(180deg);
+}

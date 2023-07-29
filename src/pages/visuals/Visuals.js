@@ -39,137 +39,171 @@ const ProfileTextRight = ({ visible }) => (
     </Text>
 
 );
-
 const PhotoRow = () => (
-    <><div className={styles.row}>
-        <div className={styles.imageContainer}>
-            <Image
-                reveal
-                className="photo"
-                delay={100}
-                placeholder={profileImgPlaceholder}
-                srcSet={[lonelyRobot, lonelyRobot]}
-                sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                alt="Image of the Lonely Robot project" />
-        </div>
-        <div className={styles.imageContainer}>
-            <Image
-                reveal
-                className="photo"
-                delay={100}
-                placeholder={profileImgPlaceholder}
-                srcSet={[raccoon, raccoon]}
-                sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                alt="Image of the Raccoon project" />
-        </div>
-        <div className={styles.imageContainer}>
-            <Image
-                reveal
-                className="photo"
-                delay={100}
-                placeholder={profileImgPlaceholder}
-                srcSet={[warMachine, warMachine]}
-                sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                alt="Image of the War Machine project" />
-        </div>
-        <div className={styles.imageContainer}>
-            <Image
-                reveal
-                className="photo"
-                delay={100}
-                placeholder={profileImgPlaceholder}
-                srcSet={[humanRobot, humanRobot]}
-                sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                alt="Image of the Human Robot project" />
-        </div>
-
-    </div><div className={styles.row}>
-            <div className={styles.imageContainer}>
-                <Image
-                    reveal
-                    className="photo"
-                    delay={100}
-                    placeholder={profileImgPlaceholder}
-                    srcSet={[deer, deer]}
-                    sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                    alt="Image of the Lonely Robot project" />
-            </div>
-            <div className={styles.imageContainer}>
-                <Image
-                    reveal
-                    className="photo"
-                    delay={100}
-                    placeholder={profileImgPlaceholder}
-                    srcSet={[heroRabbit, heroRabbit]}
-                    sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                    alt="Image of the Raccoon project" />
-            </div>
-            <div className={styles.imageContainer}>
-                <Image
-                    reveal
-                    className="photo"
-                    delay={100}
-                    placeholder={profileImgPlaceholder}
-                    srcSet={[cosmicAmazement, cosmicAmazement]}
-                    sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                    alt="Image of the War Machine project" />
-            </div>
-            <div className={styles.imageContainer}>
-                <Image
-                    reveal
-                    className="photo"
-                    delay={100}
-                    placeholder={profileImgPlaceholder}
-                    srcSet={[gangsterGiraffe, gangsterGiraffe]}
-                    sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                    alt="Image of the Human Robot project" />
-            </div>
-
+    <>
+        <div className={styles.row}>
+            <FlipCard
+                image={lonelyRobot}
+                alt="Image of the Lonely Robot project"
+                info={{
+                    name: "Lonely Robot",
+                    description: "This is a project about a lonely robot...",
+                    technique: "Digital Painting",
+                    date: "2023-07-01"
+                }}
+            />
+            <FlipCard
+                image={raccoon}
+                alt="Image of the Raccoon project"
+                info={{
+                    name: "Raccoon",
+                    description: "This is a project about a raccoon...",
+                    technique: "Oil Painting",
+                    date: "2023-07-02"
+                }}
+            />
+            <FlipCard
+                image={warMachine}
+                alt="Image of the War Machine project"
+                info={{
+                    name: "War Machine",
+                    description: "This is a project about a war machine...",
+                    technique: "Watercolor Painting",
+                    date: "2023-07-03"
+                }}
+            />
+            <FlipCard
+                image={humanRobot}
+                alt="Image of the Human Robot project"
+                info={{
+                    name: "Human Robot",
+                    description: "This is a project about a human robot...",
+                    technique: "Graphite Drawing",
+                    date: "2023-07-04"
+                }}
+            />
         </div>
         <div className={styles.row}>
-            <div className={styles.imageContainer}>
-                <Image
-                    reveal
-                    className="photo"
-                    delay={100}
-                    placeholder={profileImgPlaceholder}
-                    srcSet={[iceDragon, iceDragon]}
-                    sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                    alt="Image of the Lonely Robot project" />
-            </div>
-            <div className={styles.imageContainer}>
-                <Image
-                    reveal
-                    className="photo"
-                    delay={100}
-                    placeholder={profileImgPlaceholder}
-                    srcSet={[chemicalExplosion, chemicalExplosion]}
-                    sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                    alt="Image of the Raccoon project" />
-            </div>
-            <div className={styles.imageContainer}>
-                <Image
-                    reveal
-                    className="photo"
-                    delay={100}
-                    placeholder={profileImgPlaceholder}
-                    srcSet={[dimensionalBattle, dimensionalBattle]}
-                    sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                    alt="Image of the War Machine project" />
-            </div>
-            <div className={styles.imageContainer}>
-                <Image
-                    reveal
-                    className="photo"
-                    delay={100}
-                    placeholder={profileImgPlaceholder}
-                    srcSet={[ultimateCheckers, ultimateCheckers]}
-                    sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                    alt="Image of the Human Robot project" />
-            </div>
-
-        </div></>
+            <FlipCard
+                image={deer}
+                alt="Image of the Deer project"
+                info={{
+                    name: "Deer",
+                    description: "This is a project about a deer...",
+                    technique: "Digital Painting",
+                    date: "2023-07-05"
+                }}
+            />
+            <FlipCard
+                image={heroRabbit}
+                alt="Image of the Hero Rabbit project"
+                info={{
+                    name: "Hero Rabbit",
+                    description: "This is a project about a hero rabbit...",
+                    technique: "Oil Painting",
+                    date: "2023-07-06"
+                }}
+            />
+            <FlipCard
+                image={cosmicAmazement}
+                alt="Image of the Cosmic Amazement project"
+                info={{
+                    name: "Cosmic Amazement",
+                    description: "This is a project about cosmic amazement...",
+                    technique: "Watercolor Painting",
+                    date: "2023-07-07"
+                }}
+            />
+            <FlipCard
+                image={gangsterGiraffe}
+                alt="Image of the Gangster Giraffe project"
+                info={{
+                    name: "Gangster Giraffe",
+                    description: "This is a project about a gangster giraffe...",
+                    technique: "Graphite Drawing",
+                    date: "2023-07-08"
+                }}
+            />
+        </div>
+        <div className={styles.row}>
+            <FlipCard
+                image={iceDragon}
+                alt="Image of the Ice Dragon project"
+                info={{
+                    name: "Ice Dragon",
+                    description: "This is a project about an ice dragon...",
+                    technique: "Digital Painting",
+                    date: "2023-07-09"
+                }}
+            />
+            <FlipCard
+                image={chemicalExplosion}
+                alt="Image of the Chemical Explosion project"
+                info={{
+                    name: "Chemical Explosion",
+                    description: "This is a project about a chemical explosion...",
+                    technique: "Oil Painting",
+                    date: "2023-07-10"
+                }}
+            />
+            <FlipCard
+                image={dimensionalBattle}
+                alt="Image of the Dimensional Battle project"
+                info={{
+                    name: "Dimensional Battle",
+                    description: "This is a project about a dimensional battle...",
+                    technique: "Watercolor Painting",
+                    date: "2023-07-11"
+                }}
+            />
+            <FlipCard
+                image={ultimateCheckers}
+                alt="Image of the Ultimate Checkers project"
+                info={{
+                    name: "Ultimate Checkers",
+                    description: "This is a project about ultimate checkers...",
+                    technique: "Graphite Drawing",
+                    date: "2023-07-12"
+                }}
+            />
+        </div>
+    </>
 );
+
+const FlipCard = ({ image, alt, info }) => {
+    const [isFlipped, setIsFlipped] = useState(false);
+
+    const flipCard = () => {
+        setIsFlipped(!isFlipped);
+    };
+
+    return (
+        <div className={styles.flipCard}>
+            <div className={styles.flipCardInner}>
+                <div className={styles.flipCardFront}>
+                    <Image
+                        reveal
+                        className="photo"
+                        delay={100}
+                        placeholder={profileImgPlaceholder}
+                        srcSet={[image, image]}
+                        sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
+                        alt={alt}
+                    />
+                </div>
+                <div className={styles.flipCardBack}>
+                    <h4>{info.name}</h4>
+                    <p>{info.description}</p>
+                    <p><strong>Technique:</strong> {info.technique}</p>
+                    <p><strong>Date:</strong> {info.date}</p>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+
+
 
 export const Visuals = ({ id, visible, sectionRef }) => {
     const [focused, setFocused] = useState(false);
