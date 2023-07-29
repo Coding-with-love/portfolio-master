@@ -23,7 +23,7 @@ import gangsterGiraffe from './assets/gangsterGirraffe.jpeg';
 import iceDragon from './assets/iceDragon.jpeg';
 import chemicalExplosion from './assets/chemicalExplosion.jpg';
 import dimensionalBattle from './assets/DimensionalBattle.jpg';
-import ultimateCheckers from './assets/ultimateCheckers.jpg';
+import ultimateCheckers from './assets/ultimatecheckers.jpg';
 const ProfileTextLeft = ({ visible }) => (
     <Fragment>
 
