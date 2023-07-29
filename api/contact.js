@@ -8,11 +8,11 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Added GET endpoint for testing
-app.get('/test', (req, res) => {
+app.get('/', (req, res) => {
   res.send("Server is running correctly");
 });
 
-app.post('/send-email', async (req, res) => {
+app.post('/', async (req, res) => {
   let { email, name, message, role, org, more, done, price, launch, inquiryType } = req.body;
 
   let mailTransporter = nodemailer.createTransport({
@@ -45,6 +45,5 @@ app.post('/send-email', async (req, res) => {
   });
 });
 
-app.listen(3001, () => {
-  console.log('Listening on port 3001');
-});
+// Export the server middleware
+module.exports = app;
