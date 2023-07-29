@@ -179,9 +179,8 @@ const FlipCard = ({ image, alt, info }) => {
 
     return (
         <div
-            className={`${styles.flipCard} ${isFlipped ? styles.isFlipped : ""}`}
-            onClick={flipCard}
-
+            className={`${styles.flipCard} ${isFlipped ? styles.isFlipped : ''}`}
+            onClick={flipCard} // add this line here
         >
             <div className={styles.flipCardInner}>
                 <div className={styles.flipCardFront}>
@@ -205,7 +204,6 @@ const FlipCard = ({ image, alt, info }) => {
         </div>
     );
 };
-
 
 
 
