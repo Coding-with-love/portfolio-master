@@ -47,123 +47,127 @@ const PhotoRow = () => (
                 alt="Image of the Lonely Robot project"
                 info={{
                     name: "Lonely Robot",
-                    description: "This is a project about a lonely robot...",
-                    technique: "Digital Painting",
-                    date: "2023-07-01"
+                    description: "The image depicts a suited robot with a head-mounted camera, standing in a flower-adorned puddle, its reflection vivid in the water.",
+                    technique: "Mixed Media",
+                    date: "2023-07-25"
                 }}
             />
             <FlipCard
                 image={raccoon}
-                alt="Image of the Raccoon project"
+                alt="Rocket Raccoon in Space Suit"
                 info={{
-                    name: "Raccoon",
-                    description: "This is a project about a raccoon...",
-                    technique: "Oil Painting",
-                    date: "2023-07-02"
+                    name: "Rocket Raccoon in Space Suit",
+                    description: "The image presents Rocket Raccoon from Marvel's Guardians of the Galaxy, clad in a spacesuit, gazing into the infinite expanse of space.",
+                    technique: "Mixed Media",
+                    date: "2023-07-16"
                 }}
             />
+
             <FlipCard
                 image={warMachine}
-                alt="Image of the War Machine project"
+                alt="The Fallen Knight"
                 info={{
-                    name: "War Machine",
-                    description: "This is a project about a war machine...",
-                    technique: "Watercolor Painting",
-                    date: "2023-07-03"
+                    name: "The Fallen Knight",
+                    description: "A soaked knight in black armor, skull-adorned helmet, red eyes, stoically enduring a heavy downpour.",
+                    technique: "Diverse brushes, colors, and a 'bleeding' technique to depict a knight, his armor, and the rain.",
+                    date: "2023-06-10"
                 }}
             />
             <FlipCard
                 image={humanRobot}
-                alt="Image of the Human Robot project"
+                alt="Humanoid"
                 info={{
-                    name: "Human Robot",
-                    description: "This is a project about a human robot...",
-                    technique: "Graphite Drawing",
-                    date: "2023-07-04"
+                    name: "Humanoid",
+                    description: "AnthroBot, a hyper-realistic robot endowed with a humanoid face structure.",
+                    technique: "Photorealistic rendering, complex textures, light refraction, and advanced 3D modeling techniques.",
+                    date: "2023-05-29"
                 }}
             />
         </div>
         <div className={styles.row}>
             <FlipCard
                 image={deer}
-                alt="Image of the Deer project"
+                alt="The Nightwalkers"
                 info={{
-                    name: "Deer",
-                    description: "This is a project about a deer...",
-                    technique: "Digital Painting",
-                    date: "2023-07-05"
+                    name: "The Nightwalkers",
+                    description: "The image depicts a pair of digitally-designed, glow-in-the-dark deer amidst a geometrically-shaped forest, demonstrating the enchanting potential of digital art.",
+                    technique: "Mixed Media",
+                    date: "2023-05-25"
                 }}
             />
+
             <FlipCard
                 image={heroRabbit}
-                alt="Image of the Hero Rabbit project"
+                alt="Astro-Bunny"
                 info={{
-                    name: "Hero Rabbit",
-                    description: "This is a project about a hero rabbit...",
-                    technique: "Oil Painting",
-                    date: "2023-07-06"
+                    name: "Astro-Bunny",
+                    description: "A vibrant, cartoonish rabbit in a spacesuit, energetically sprinting through a realistic space backdrop.",
+                    technique: "Fusion of 3D-modeled rabbit and digitally painted cosmic backdrop, forming the final lively picture.",
+                    date: "2023-05-15"
                 }}
             />
+
             <FlipCard
                 image={cosmicAmazement}
-                alt="Image of the Cosmic Amazement project"
+                alt="The Tree of Life"
                 info={{
-                    name: "Cosmic Amazement",
-                    description: "This is a project about cosmic amazement...",
-                    technique: "Watercolor Painting",
-                    date: "2023-07-07"
+                    name: "The Tree of Life",
+                    description: "A serene image of a loving couple embracing under a sunset sky, beside a towering tree.",
+                    technique: "Digital painting of the tree and background combined with a photo-manipulated couple for a seamless look.",
+                    date: "2023-05-08"
                 }}
             />
             <FlipCard
                 image={gangsterGiraffe}
-                alt="Image of the Gangster Giraffe project"
+                alt="The Giraffe in Sneakers"
                 info={{
-                    name: "Gangster Giraffe",
-                    description: "This is a project about a gangster giraffe...",
-                    technique: "Graphite Drawing",
-                    date: "2023-07-08"
+                    name: "The Giraffe in Sneakers",
+                    description: "A whimsical image featuring a jacket-clad, sneaker-wearing giraffe on a stool, gazing.",
+                    technique: "Created in Photoshop, morphing a stock giraffe photo with added jacket, sneakers, and stool, color-adjusted for a whimsical appeal.",
+                    date: "2023-05-05"
                 }}
             />
         </div>
         <div className={styles.row}>
+
             <FlipCard
                 image={iceDragon}
-                alt="Image of the Ice Dragon project"
+                alt="The Dragon's Roar"
                 info={{
-                    name: "Ice Dragon",
-                    description: "This is a project about an ice dragon...",
-                    technique: "Digital Painting",
-                    date: "2023-07-09"
+                    name: "The Dragon's Roar",
+                    description: "An intense close-up of a white dragon with sharp teeth and red eyes, breathing a fiery vortex.",
+                    technique: "The dramatic image blends digital painting, transforming a stock dragon head with added flames.",
+                    date: "2023-05-03"
                 }}
             />
             <FlipCard
                 image={chemicalExplosion}
-                alt="Image of the Chemical Explosion project"
+                alt="Bubble World"
                 info={{
-                    name: "Chemical Explosion",
-                    description: "This is a project about a chemical explosion...",
-                    technique: "Oil Painting",
-                    date: "2023-07-10"
+                    name: "Bubble World",
+                    description: "The imaginative image displays a mid-air suspended glass ball filled with vibrant bubbles, seemingly floating in a liquid.",
+                    technique: "The image showcases 'bubble painting,' blending 3D glass balls and bubbles.",
+                    date: "2022-12-26"
                 }}
             />
             <FlipCard
                 image={dimensionalBattle}
-                alt="Image of the Dimensional Battle project"
+                alt="The Sea of Shadows"
                 info={{
-                    name: "Dimensional Battle",
-                    description: "This is a project about a dimensional battle...",
-                    technique: "Watercolor Painting",
-                    date: "2023-07-11"
+                    name: "The Sea of Shadows",
+                    description: "An adventurous image showcasing a lantern-lit pirate ship sailing under a starry, moonlit night, reflecting mystery.",
+                    technique: "The atmospheric ship image under a starry night was color-adjusted in Photoshop.",
+                    date: "2022-12-06"
                 }}
             />
             <FlipCard
                 image={ultimateCheckers}
-                alt="Image of the Ultimate Checkers project"
+                alt="Ultimate Checkers"
                 info={{
                     name: "Ultimate Checkers",
-                    description: "This is a project about ultimate checkers...",
-                    technique: "Graphite Drawing",
-                    date: "2023-07-12"
+                    description: "A super intense checkers game with crazy viewers.",
+                    technique: "Put multiple people that looked like myself to make a scene of an intense checkers game.",
+                    date: "2021-10-19"
                 }}
             />
         </div>

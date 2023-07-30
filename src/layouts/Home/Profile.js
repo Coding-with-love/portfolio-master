@@ -20,12 +20,32 @@ const ProfileText = ({ visible, titleId }) => (
       <DecoderText text="hello world! " start={visible} delay={500} />
     </Heading>
     <Text className={styles.description} data-visible={visible} size="l" as="p">
-      I&apos;m Connor Love, a passionate young web and graphic designer based in Medina, Ohio. As a senior in high school, I&apos;ve spent the last five years immersing myself in the realm of coding and the last three years honing my skills in graphic design. My love for technology and creativity has allowed me to cultivate an array of skills that enables me to weave together intricate, functional, and aesthetically pleasing websites, applications, and visual content.
+      Hi! I&apos;m Connor Love, a high school senior from Medina, Ohio, who is really into web and graphic design. I&apos;ve spent the last five years diving into coding and the last three years sharpening my skills in graphic design.
+    </Text>
+
+
+    <Text className={styles.description} data-visible={visible} size="l" as="p">
+      You know, the best part about what I do is that it combines two things I love the most: technology and creativity. I get to take an idea - just a thought - and bring it to life with lines of code and design elements. The feeling I get when I see a website or an app I built working smoothly, looking good, and being helpful to people, it&apos;s like nothing else. It&apos;s like watching a bunch of Lego blocks turn into a spaceship or a castle. I guess that&apos;s why I&apos;m hooked!
+    </Text>
+
+
+    <Text className={styles.description} data-visible={visible} size="l" as="p">
+      Over the years, I&apos;ve become good at working with a lot of different coding languages, like HTML, CSS, Reactjs, Nextjs, Three.js, Java, PHP, SQL, SWIFT, Typescript, and even a bit of Python. This helps me to build interactive and sturdy online experiences that people love to use. And when it comes to design, knowing how to use tools like Photoshop, Illustrator, and After Effects gives me the chance to add my own unique style to everything I create.
     </Text>
 
     <Text className={styles.description} data-visible={visible} size="l" as="p">
-      With a comprehensive grasp of languages including HTML, CSS, Reactjs, Nextjs, Three.js, Java, PHP, SQL, SWIFT, Typescript, and a touch of Python, I am adept at creating robust and interactive online experiences. Moreover, my proficiency with Adobe Suite tools such as Photoshop, Illustrator, and After Effects elevates my designs, making them distinct, dynamic, and engaging. As a dedicated student of design and technology, I continue to learn and adapt, ensuring that my work is always fresh, innovative, and on the cutting edge. I look forward to sharing my portfolio with you, demonstrating the breadth and depth of my expertise.
+      But no matter how much I learn, there&apos;s always something new out there. That&apos;s why I&apos;m always learning, always pushing myself to get better. This way, my work stays fresh and up-to-date.
     </Text>
+
+    <Text className={styles.description} data-visible={visible} size="l" as="p">
+      My logo is a simple &quot;W&quot;, but it means a lot to me. It stands for &apos;Workmanship&apos;, a reminder of the care and attention to detail I put into each piece of my work.
+    </Text>
+
+
+    <Text className={styles.description} data-visible={visible} size="l" as="p">
+      I can&apos;t wait to share my portfolio with you. Each piece in it is a little part of my journey, a window into how much I&apos;ve grown and what I can do. More than anything, it shows the love and passion I have for my work.
+    </Text>
+
   </Fragment>
 );
 
