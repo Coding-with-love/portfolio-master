@@ -28,8 +28,8 @@ const App = ({ Component, pageProps }) => {
   useEffect(() => {
     const script = document.createElement('script');
     script.async = true;
-    script.src = 'https://analytics.umami.is/script.js';
-    script.setAttribute('data-website-id', '7eae09d3-db0e-4251-9d89-6baa6436de79');
+    script.src = 'http://localhost:3000/script.js';
+    script.setAttribute('data-website-id', '84daf0ef-e451-4002-9406-1ba8567c48a6');
     document.head.appendChild(script);
 
     return () => {
