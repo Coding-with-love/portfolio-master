@@ -94,8 +94,8 @@ export const Home = () => {
         sectionRef={projectTwo}
         visible={visibleSections.includes(projectTwo.current)}
         index={2}
-        title="Wave Browser"
-        description="Wave Browser is an efficient, customizable, open-source browser with built in ad-blocking, sync capabilities, and a focus on user personalization."
+        title="Aeroranker"
+        description="AeroRanker is a platform developed that offers comprehensive analytics to help businesses understand their website's performance and improve their online marketing strategies."
         buttonText="Coming Soon"
         buttonLink=""
         model={{
