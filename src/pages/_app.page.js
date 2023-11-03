@@ -46,12 +46,24 @@ const App = ({ Component, pageProps }) => {
       <ThemeProvider themeId={state.theme}>
         <LazyMotion features={domAnimation}>
           <Fragment>
-            <Head>
-              <link
-                rel="canonical"
-                href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}${canonicalRoute}`}
-              />
-            </Head>
+          <Head>
+          <link
+            rel="canonical"
+            href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}${canonicalRoute}`}
+          />
+          {/* Google Analytics script */}
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-ES4TGZZF40"></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-ES4TGZZF40');
+              `,
+            }}
+          />
+        </Head>
             <VisuallyHidden
               showOnFocus
               as="a"
