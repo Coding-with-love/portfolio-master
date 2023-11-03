@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Script from 'next/script';
 import { Button } from 'components/Button';
 import { DecoderText } from 'components/DecoderText';
 import { Divider } from 'components/Divider';
@@ -109,10 +110,10 @@ export const Contact = () => {
   };
 
   useEffect(() => {
-    // Google Analytics script
+    // Directly assign to the window object to avoid ESLint errors
     window.dataLayer = window.dataLayer || [];
     function gtag() {
-      dataLayer.push(arguments);
+      window.dataLayer.push(arguments);
     }
     gtag('js', new Date());
     gtag('config', 'G-ES4TGZZF40');
@@ -126,10 +127,18 @@ export const Contact = () => {
             title="Contact"
             description="Send me a message if you’re interested in discussing a project or if you just want to say hi"
           />
-          <Head>
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-ES4TGZZF40"></script>
-            {/* ... other <Head> content */}
-          </Head>
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-ES4TGZZF40"
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-ES4TGZZF40');
+        `}
+          </Script>
           <Transition unmount in={!complete} timeout={1600}>
             {(visible, status) => (
               <form className={styles.form} method="post" onSubmit={handleSubmit}>
