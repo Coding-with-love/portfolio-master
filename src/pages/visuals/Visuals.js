@@ -9,7 +9,7 @@ import { Image } from '../../components/Image';
 import { Section } from '../../components/Section';
 import { Text } from '../../components/Text';
 import { Transition } from '../../components/Transition';
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { media } from 'utils/style';
 import styles from './Visuals.module.css';
 import lonelyRobot from './assets/lonelyRobot.jpeg';
