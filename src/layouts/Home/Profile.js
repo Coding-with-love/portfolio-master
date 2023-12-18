@@ -36,12 +36,6 @@ const ProfileText = ({ visible, titleId }) => (
     <Text className={styles.description} data-visible={visible} size="l" as="p">
       But no matter how much I learn, there&apos;s always something new out there. That&apos;s why I&apos;m always learning, always pushing myself to get better. This way, my work stays fresh and up-to-date.
     </Text>
-
-    <Text className={styles.description} data-visible={visible} size="l" as="p">
-      My logo is a simple &quot;W&quot;, but it means a lot to me. It stands for &apos;Workmanship&apos;, a reminder of the care and attention to detail I put into each piece of my work.
-    </Text>
-
-
     <Text className={styles.description} data-visible={visible} size="l" as="p">
       I can&apos;t wait to share my portfolio with you. Each piece in it is a little part of my journey, a window into how much I&apos;ve grown and what I can do. More than anything, it shows the love and passion I have for my work.
     </Text>
