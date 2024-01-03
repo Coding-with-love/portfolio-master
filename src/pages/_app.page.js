@@ -17,8 +17,6 @@ import { ScrollRestore } from '../layouts/App/ScrollRestore';
 
 export const AppContext = createContext({});
 
-
-
 const App = ({ Component, pageProps }) => {
   const [storedTheme] = useLocalStorage('theme', 'dark');
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -26,7 +24,18 @@ const App = ({ Component, pageProps }) => {
   const canonicalRoute = route === '/' ? '' : `${asPath}`;
   useFoucFix();
 
+  // Umami analytics script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://analytics.umami.is/script.js';
+    script.setAttribute('data-website-id', '7eae09d3-db0e-4251-9d89-6baa6436de79');
+    document.head.appendChild(script);
 
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
 
   useEffect(() => {
     dispatch({ type: 'setTheme', value: storedTheme || 'dark' });
@@ -37,13 +46,24 @@ const App = ({ Component, pageProps }) => {
       <ThemeProvider themeId={state.theme}>
         <LazyMotion features={domAnimation}>
           <Fragment>
-            <Head>
-              <link
-                rel="canonical"
-                href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}${canonicalRoute}`}
-              />
-
-            </Head>
+          <Head>
+          <link
+            rel="canonical"
+            href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}${canonicalRoute}`}
+          />
+          {/* Google Analytics script */}
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-ES4TGZZF40"></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-ES4TGZZF40');
+              `,
+            }}
+          />
+        </Head>
             <VisuallyHidden
               showOnFocus
               as="a"

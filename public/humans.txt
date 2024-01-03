@@ -10,7 +10,7 @@ _______________________________________________________________________________
 
 DESIGNER | デザイナー
 
-Hamish Williams
+Connor Love
 Hand crafted design & web development
 
 Design tools:
@@ -23,7 +23,7 @@ github.com/hamishmw
 
 _______________________________________________________________________________
 
-TECHNOLOGY | テクノロジー
+TECHNOLOGY | 
 
 React
 Next.js

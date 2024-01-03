@@ -1,3 +1,5 @@
+import Head from 'next/head';
+import Script from 'next/script';
 import { Button } from 'components/Button';
 import { DecoderText } from 'components/DecoderText';
 import { Divider } from 'components/Divider';
@@ -10,7 +12,7 @@ import { Section } from 'components/Section';
 import { Text } from 'components/Text';
 import { tokens } from 'components/ThemeProvider/theme';
 import { Transition } from 'components/Transition';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { cssProps, msToNum, numToMs } from 'utils/style';
 import styles from './Contact.module.css';
 import 'react-input-range/lib/css/index.css';
@@ -107,7 +109,15 @@ export const Contact = () => {
     setMessage('');
   };
 
-
+  useEffect(() => {
+    // Directly assign to the window object to avoid ESLint errors
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-ES4TGZZF40');
+  }, []);
 
   return (
     <Section className={styles.contact}>
@@ -117,6 +127,18 @@ export const Contact = () => {
             title="Contact"
             description="Send me a message if you’re interested in discussing a project or if you just want to say hi"
           />
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-ES4TGZZF40"
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-ES4TGZZF40');
+        `}
+          </Script>
           <Transition unmount in={!complete} timeout={1600}>
             {(visible, status) => (
               <form className={styles.form} method="post" onSubmit={handleSubmit}>

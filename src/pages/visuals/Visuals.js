@@ -9,7 +9,7 @@ import { Image } from '../../components/Image';
 import { Section } from '../../components/Section';
 import { Text } from '../../components/Text';
 import { Transition } from '../../components/Transition';
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { media } from 'utils/style';
 import styles from './Visuals.module.css';
 import lonelyRobot from './assets/lonelyRobot.jpeg';
@@ -47,19 +47,19 @@ const PhotoRow = () => (
                 alt="Image of the Lonely Robot project"
                 info={{
                     name: "Lonely Robot",
-                    description: "The image depicts a suited robot with a head-mounted camera, standing in a flower-adorned puddle, its reflection vivid in the water.",
-                    technique: "Mixed Media",
-                    date: "2023-07-25"
+                    description: "This is a project about a lonely robot...",
+                    technique: "Digital Painting",
+                    date: "2023-07-01"
                 }}
             />
             <FlipCard
                 image={raccoon}
                 alt="Rocket Raccoon in Space Suit"
                 info={{
-                    name: "Rocket Raccoon in Space Suit",
-                    description: "The image presents Rocket Raccoon from Marvel's Guardians of the Galaxy, clad in a spacesuit, gazing into the infinite expanse of space.",
-                    technique: "Mixed Media",
-                    date: "2023-07-16"
+                    name: "Raccoon",
+                    description: "This is a project about a raccoon...",
+                    technique: "Oil Painting",
+                    date: "2023-07-02"
                 }}
             />
 
@@ -215,6 +215,30 @@ const FlipCard = ({ image, alt, info }) => {
 export const Visuals = ({ id, visible, sectionRef }) => {
     const [focused, setFocused] = useState(false);
     const titleId = `${id}-title`;
+
+    useEffect(() => {
+        // Google Analytics script
+        const scriptTag = document.createElement('script');
+        scriptTag.async = true;
+        scriptTag.src = 'https://www.googletagmanager.com/gtag/js?id=G-ES4TGZZF40';
+        document.head.appendChild(scriptTag);
+
+        const script = document.createElement('script');
+        script.innerHTML = `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-ES4TGZZF40');
+        `;
+        document.head.appendChild(script);
+
+        // Clean up function to remove the script when the component unmounts
+        return () => {
+            document.head.removeChild(scriptTag);
+            document.head.removeChild(script);
+        };
+    }, []);
+
     return (
         <Section
             className={styles.profile}
@@ -226,34 +250,31 @@ export const Visuals = ({ id, visible, sectionRef }) => {
             aria-labelledby={titleId}
             tabIndex={-1}
         >
-
             <Transition in={visible || focused} timeout={0}>
-                {visible => (
-                    <>
-                        <Heading className={`${styles.title} ${styles.headingCenter}`} data-visible={visible} level={3} id={titleId} style={{ marginTop: '2%' }}>
-                            <DecoderText text="Visual Journey " start={visible} delay={500} />
+                {(transitionVisible) => (
+                    <Fragment>
+                        <Heading className={`${styles.title} ${styles.headingCenter}`} data-visible={transitionVisible} level={3} id={titleId} style={{ marginTop: '2%' }}>
+                            <DecoderText text="Visual Journey " start={transitionVisible} delay={500} />
                         </Heading>
                         <div className={styles.content}>
-
                             <div className={styles.column}>
-                                <ProfileTextLeft visible={visible} />
+                                <ProfileTextLeft visible={transitionVisible} />
                             </div>
                             <div className={styles.column}>
-                                <ProfileTextRight visible={visible} />
-
+                                <ProfileTextRight visible={transitionVisible} />
                                 <Button
                                     secondary
                                     className={styles.button}
-                                    data-visible={visible}
+                                    data-visible={transitionVisible}
                                     href="/contact"
                                     icon="send"
                                 >
                                     Send me a message
                                 </Button>
-
                             </div>
                             <PhotoRow />
-                        </div></>
+                        </div>
+                    </Fragment>
                 )}
             </Transition>
         </Section>
