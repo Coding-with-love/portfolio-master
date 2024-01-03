@@ -19,9 +19,14 @@ export const navLinks = [
 
 export const socialLinks = [
   {
-    label: 'Twitter',
-    url: 'https://twitter.com/cando145',
-    icon: 'twitter',
+    label: 'Instagram',
+    url: 'https://instagram.com/connorlove__',
+    icon: 'instagram',
+  },
+  {
+    label: 'Linkedin',
+    url: 'https://linkedin.com/in/connor-love-45446724b',
+    icon: 'linkedin'
   },
   {
     label: 'Github',
