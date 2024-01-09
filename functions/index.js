@@ -17,7 +17,7 @@ const ses = new aws.SES({
 const ORIGINS = ['https://connorlove.com', 'https://www.connorlovecom'];
 const MAX_EMAIL_LENGTH = 512;
 const MAX_MESSAGE_LENGTH = 16384;
-const EMAIL = 'LoveConnor2005@gmail.com';
+const EMAIL = process.env.EMAIL;
 const FROM_EMAIL = 'mailbot@connorlove.com';
 const EMAIL_PATTERN = /(.+)@(.+){2,}\.(.+){2,}/;
 

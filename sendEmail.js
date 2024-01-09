@@ -2,7 +2,7 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-
+const email = process.env.EMAIL;
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
@@ -25,7 +25,7 @@ app.post('/send-email', async (req, res) => {
 
     let mailDetails = {
         from: 'loveconnor2005@outlook.com',
-        to: 'loveconnor2005@gmail.com',
+        to: email,
         subject: `Inquiry from ${name}`,
         text: `Email: ${email}\nName: ${name}\nMessage: ${message}\nInquiry Type: ${inquiryType}`,
     };

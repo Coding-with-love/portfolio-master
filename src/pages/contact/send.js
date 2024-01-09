@@ -3,14 +3,14 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 
 const app = express();
-
+const email = process.env.EMAIL;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.post('/send/', function (req, res) {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'LoveConnor2005@gmail.com',
+            user: email,
             pass: 'Cando145!'
         }
     });
@@ -21,7 +21,7 @@ app.post('/send/', function (req, res) {
     if (req.body.inquiryType === 'Business') {
         mailOptions = {
             from: req.body.email,
-            to: 'LoveConnor2005@gmail.com',
+            to: email,
             subject: `New Business Inquiry from ${req.body.name}`,
             html: `<p>You have a new business inquiry</p>
                    <h3>Contact Details</h3>
@@ -39,7 +39,7 @@ app.post('/send/', function (req, res) {
     } else if (req.body.inquiryType === 'Personal') {
         mailOptions = {
             from: req.body.email,
-            to: 'LoveConnor2005@gmail.com',
+            to: email,
             subject: `New Personal Inquiry from ${req.body.email}`,
             html: `<p>You have a new personal inquiry</p>
                    <h3>Contact Details</h3>
