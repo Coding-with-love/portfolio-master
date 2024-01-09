@@ -4,7 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
-
+const email = process.env.EMAIL;
 const corsOptions = {
   origin: 'https://www.connorlove.com', // replace with your origin
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -33,7 +33,7 @@ app.post('/api/contact.js', async (req, res) => {
 
   let mailDetails = {
     from: 'loveconnor2005@outlook.com',
-    to: 'loveconnor2005@gmail.com',
+    to: email,
     subject: `Inquiry from ${name}`,
     text: `Email: ${email}\nName: ${name}\nMessage: ${message}\nInquiry Type: ${inquiryType}`,
   };
