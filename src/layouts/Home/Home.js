@@ -9,7 +9,7 @@ import { Profile } from 'layouts/Home/Profile';
 import { ProjectSummary } from 'layouts/Home/ProjectSummary';
 import { useEffect, useRef, useState } from 'react';
 import styles from './Home.module.css';
-import wave from 'assets/logo2.png';
+import wave from 'assets/cupsCafe.png';
 
 const disciplines = ['Developer', 'Photoshopper', 'UI/UX Expert', 'SEO Optimizer', 'Brand-Builder'];
 
