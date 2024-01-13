@@ -1,4 +1,4 @@
-import gamestackTexturePlaceholder from 'assets/gamestack-login-placeholder.jpg';
+import gamestackTexturePlaceholder from 'assets/cupsCafe.png';
 import sprTextureLarge from 'assets/spr-lesson-builder-dark-large.jpg';
 import sprTexturePlaceholder from 'assets/spr-lesson-builder-dark-placeholder.jpg';
 import sprTexture from 'assets/spr-lesson-builder-dark.jpg';
@@ -94,10 +94,10 @@ export const Home = () => {
         sectionRef={projectTwo}
         visible={visibleSections.includes(projectTwo.current)}
         index={2}
-        title="Aeroranker"
-        description="AeroRanker is a platform developed that offers comprehensive analytics to help businesses understand their website's performance and improve their online marketing strategies."
-        buttonText="Coming Soon"
-        buttonLink=""
+        title="Cups Cafe"
+        description="Cups Cafe is a non-profit coffee shop that provides food, drinks, and a safe space for people who need it."
+        buttonText="View Website"
+        buttonLink="https://cups-cafe-updated.vercel.app/"
         model={{
           type: 'laptop',
           alt: 'App login screen',
