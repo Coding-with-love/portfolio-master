@@ -1,12 +1,9 @@
-import usesBackgroundPlaceholder from 'assets/uses-background-placeholder.jpg';
-import usesBackground from 'assets/uses-background.mp4';
 import { Footer } from 'components/Footer';
 import { Link } from 'components/Link';
 import { List, ListItem } from 'components/List';
 import { Meta } from 'components/Meta';
 import { Table, TableBody, TableCell, TableHeadCell, TableRow } from 'components/Table';
 import {
-  ProjectBackground,
   ProjectContainer,
   ProjectHeader,
   ProjectSection,
@@ -26,14 +23,10 @@ export const Uses = () => {
         description="A list of hardware and software I use to do my thing"
       />
       <ProjectContainer className={styles.uses}>
-        <ProjectBackground
-          src={{ src: usesBackground }}
-          placeholder={usesBackgroundPlaceholder}
-          opacity={0.7}
-        />
+
         <ProjectHeader
           title="Uses"
-          description="A somewhat comprehensive list of tools, apps, hardware, and more that I use on a daily basis to design and code things. And yeah, that is a Johnny Mnemonic GIF in the background."
+          description="A somewhat comprehensive list of tools, apps, hardware, and more that I use on a daily basis to design and code things."
         />
         <ProjectSection padding="none" className={styles.section}>
           <ProjectSectionContent>
@@ -44,9 +37,7 @@ export const Uses = () => {
                   <ListItem>
                     <Link href="https://www.figma.com">Figma</Link> is my primary tool for
                     UI design these days. Made the switch from Sketch in 2020 and haven’t
-                    looked back. I’ve also created{' '}
-                    <Link href="https://www.figma.com/@hamish">a few plugins</Link> that
-                    you can install.
+                    looked back.
                   </ListItem>
                   <ListItem>
                     Any motion graphics I create are created in Adobe After Effects. So
@@ -73,11 +64,11 @@ export const Uses = () => {
                   <ListItem>
                     I use{' '}
                     <Link href="https://code.visualstudio.com/">Visual Studio Code</Link>{' '}
-                    as my text editor, with the Atom One Dark theme and Operator Mono as
+                    as my text editor, One Dark Pro theme and Operator Mono as
                     my typeface of choice.
                   </ListItem>
                   <ListItem>
-                    Firefox is my main browser for both development and general use.
+                    Arc is my main browser for both development and general use.
                   </ListItem>
                   <ListItem>
                     <Link href="https://reactjs.org/">React</Link> is my front end
@@ -102,10 +93,7 @@ export const Uses = () => {
                   </ListItem>
                   <ListItem>
                     For building and testing UI components in isolation I use{' '}
-                    <Link href="https://storybook.js.org/">Storybook</Link>. Check out the{' '}
-                    <Link href="https://storybook.hamishw.com">
-                      storybook for this website
-                    </Link>
+                    <Link href="https://storybook.js.org/">Storybook</Link>.
                     .
                   </ListItem>
                 </List>
@@ -113,57 +101,7 @@ export const Uses = () => {
             </ProjectTextRow>
           </ProjectSectionContent>
         </ProjectSection>
-        <ProjectSection padding="none" className={styles.section}>
-          <ProjectSectionContent>
-            <ProjectTextRow stretch width="m">
-              <ProjectSectionHeading>Hardware</ProjectSectionHeading>
-              <Table>
-                <TableBody>
-                  <TableRow>
-                    <TableHeadCell>CPU</TableHeadCell>
-                    <TableCell>AMD Ryzen 5800x</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableHeadCell>GPU</TableHeadCell>
-                    <TableCell>MSI Gaming X Trio RTX 3080</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableHeadCell>Memory</TableHeadCell>
-                    <TableCell>GSkill 32GB DDR4 3600mhz CAS 18</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableHeadCell>Motherboard</TableHeadCell>
-                    <TableCell>MSI B550 Tomahawk</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableHeadCell>Monitor</TableHeadCell>
-                    <TableCell>1440p IPS 144hz LG 27GL850</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableHeadCell>Keyboard</TableHeadCell>
-                    <TableCell>Logitech MX Keys</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableHeadCell>Mouse</TableHeadCell>
-                    <TableCell>Logitech G403</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableHeadCell>Laptop</TableHeadCell>
-                    <TableCell>Macbook Pro 14″ (2022 M1 Max)</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableHeadCell>Headphones</TableHeadCell>
-                    <TableCell>Audio Technica ATH-M50x/Apple Airpods</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableHeadCell>Microphone</TableHeadCell>
-                    <TableCell>Blue Yeti</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </ProjectTextRow>
-          </ProjectSectionContent>
-        </ProjectSection>
+
       </ProjectContainer>
       <Footer />
     </Fragment>
