@@ -17,6 +17,7 @@ import Send from './svg/send.svg';
 import Twitter from './svg/twitter.svg';
 import Instagram from './svg/instagram.svg';
 import linkedin from './svg/linkedin.svg';
+
 export const icons = {
   arrowLeft: ArrowLeft,
   arrowRight: ArrowRight,
