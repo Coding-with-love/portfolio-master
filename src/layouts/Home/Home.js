@@ -73,7 +73,7 @@ export const Home = () => {
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
-        title="FlowPoint"
+        title="FlowPoint Website"
         description="Leading the Future of Project Management"
         buttonText="View Website"
         buttonLink="flow-website-chi.vercel.app"
