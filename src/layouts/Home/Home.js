@@ -76,7 +76,27 @@ export const Home = () => {
         title="FlowPoint Website"
         description="Leading the Future of Project Management"
         buttonText="View Website"
-        buttonLink="flow-website-chi.vercel.app"
+        buttonLink="https://www.flowpointplatform.com"
+        model={{
+          type: 'laptop',
+          alt: 'FlowPoint',
+          textures: [
+            {
+              srcSet: [flow, flow],
+              placeholder: sprTexturePlaceholder,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-2"
+        sectionRef={projectTwo}
+        visible={visibleSections.includes(projectTwo.current)}
+        index={1}
+        title="FlowPoint Platform"
+        description="Leading the Future of Project Management"
+        buttonText="View Website"
+        buttonLink="http://useflowpointplatform.com"
         model={{
           type: 'laptop',
           alt: 'FlowPoint',
