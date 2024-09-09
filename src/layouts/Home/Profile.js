@@ -12,6 +12,7 @@ import { Text } from 'components/Text';
 import { Transition } from 'components/Transition';
 import { Fragment, useState } from 'react';
 import { media } from 'utils/style';
+import { Link } from 'components/Link';
 import styles from './Profile.module.css';
 
 const ProfileText = ({ visible, titleId }) => (
@@ -38,6 +39,9 @@ const ProfileText = ({ visible, titleId }) => (
     </Text>
     <Text className={styles.description} data-visible={visible} size="l" as="p">
       I can&apos;t wait to share my portfolio with you. Each piece in it is a little part of my journey, a window into how much I&apos;ve grown and what I can do. More than anything, it shows the love and passion I have for my work.
+    </Text>
+    <Text className={styles.description} data-visible={visible} size="l" as="p">
+      If you want to check out the tools and software that I use check out the <Link href="/uses">Uses page</Link>.
     </Text>
 
   </Fragment>

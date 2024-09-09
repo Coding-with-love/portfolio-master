@@ -3,6 +3,7 @@ import { Transition } from 'components/Transition';
 import { useReducedMotion, useSpring } from 'framer-motion';
 import { useInViewport, useWindowSize } from 'hooks';
 import { startTransition, useEffect, useRef } from 'react';
+import * as THREE from 'three';
 import {
   AmbientLight,
   Color,
@@ -17,6 +18,9 @@ import {
   WebGLRenderer,
   sRGBEncoding,
 } from 'three';
+import { Points, PointsMaterial, AdditiveBlending } from 'three';
+
+// Import texture for particles
 import { media, rgbToThreeColor } from 'utils/style';
 import { cleanRenderer, cleanScene, removeLights } from 'utils/three';
 import styles from './DisplacementSphere.module.css';
@@ -48,7 +52,7 @@ export const DisplacementSphere = props => {
   const windowSize = useWindowSize();
   const rotationX = useSpring(0, springConfig);
   const rotationY = useSpring(0, springConfig);
-
+  const particles = useRef();
   useEffect(() => {
     const { innerWidth, innerHeight } = window;
     mouse.current = new Vector2(0.8, 0.5);
@@ -87,11 +91,38 @@ export const DisplacementSphere = props => {
       sphere.current.modifier = Math.random();
       scene.current.add(sphere.current);
     });
+    const particleGeometry = new THREE.BufferGeometry();
+    // Populate particleGeometry with vertices for particles
+
+    const createDotTexture = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 16;
+      canvas.height = 16;
+
+      const context = canvas.getContext('2d');
+      context.beginPath();
+      context.arc(8, 8, 8, 0, 2 * Math.PI);
+      context.fillStyle = '#FFFFFF'; // White dot
+      context.fill();
+
+      return new THREE.CanvasTexture(canvas);
+    };
+
+    const particleMat = new PointsMaterial({
+      size: 0.5,
+      map: createDotTexture(),
+      blending: AdditiveBlending,
+      transparent: true,
+    });
+
+    particles.current = new Points(particleGeometry, particleMat);
+    scene.current.add(particles.current);
 
     return () => {
       cleanScene(scene.current);
       cleanRenderer(renderer.current);
     };
+
   }, []);
 
   useEffect(() => {
@@ -178,7 +209,10 @@ export const DisplacementSphere = props => {
     } else {
       renderer.current.render(scene.current, camera.current);
     }
-
+    if (particles.current) {
+      particles.current.rotation.y += 0.001;
+      // Additional particle animation logic
+    }
     return () => {
       cancelAnimationFrame(animation);
     };
