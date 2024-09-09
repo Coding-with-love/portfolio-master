@@ -18,10 +18,11 @@ export const Home = () => {
   const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(false);
   const intro = useRef();
   const projectOne = useRef();
+  const projectTwo = useRef();
   const details = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne, details];
+    const sections = [intro, projectOne, projectTwo, details];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
