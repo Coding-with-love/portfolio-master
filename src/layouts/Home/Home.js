@@ -10,7 +10,7 @@ import { ProjectSummary } from 'layouts/Home/ProjectSummary';
 import { useEffect, useRef, useState } from 'react';
 import styles from './Home.module.css';
 import wave from 'assets/cupsCafe.png';
-import flow from 'assets/flowpoint.png';
+
 const disciplines = ['Developer', 'Photoshopper', 'UI/UX Expert', 'SEO Optimizer', 'Brand-Builder'];
 
 export const Home = () => {
@@ -74,16 +74,16 @@ export const Home = () => {
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
-        title="FlowPoint Website"
-        description="Leading the Future of Project Management"
+        title="W-Supplements"
+        description="W SUPPLEMENTS enhances sports nutrition, personal performance, and community impact."
         buttonText="View Website"
-        buttonLink="https://www.flowpointplatform.com"
+        buttonLink="https://timelydesign.org"
         model={{
           type: 'laptop',
-          alt: 'FlowPoint',
+          alt: 'A sports gel',
           textures: [
             {
-              srcSet: [flow, flow],
+              srcSet: [sprTexture, sprTextureLarge],
               placeholder: sprTexturePlaceholder,
             },
           ],
@@ -93,23 +93,22 @@ export const Home = () => {
         id="project-2"
         sectionRef={projectTwo}
         visible={visibleSections.includes(projectTwo.current)}
-        index={1}
-        title="FlowPoint Platform"
-        description="Leading the Future of Project Management"
+        index={2}
+        title="Cups Cafe"
+        description="Cups Cafe is a non-profit coffee shop that provides food, drinks, and a safe space for people who need it."
         buttonText="View Website"
-        buttonLink="http://useflowpointplatform.com"
+        buttonLink="https://cups-cafe-updated.vercel.app/"
         model={{
           type: 'laptop',
-          alt: 'FlowPoint',
+          alt: 'App login screen',
           textures: [
             {
-              srcSet: [flow, flow],
-              placeholder: sprTexturePlaceholder,
-            },
+              srcSet: [wave, wave],
+              placeholder: gamestackTexturePlaceholder,
+            }
           ],
         }}
       />
-
 
 
       <Profile
